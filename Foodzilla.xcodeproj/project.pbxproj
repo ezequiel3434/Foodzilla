@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		370F77B624D2D91D008AF127 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F77B524D2D91D008AF127 /* AppDelegate.swift */; };
 		370F77B824D2D91D008AF127 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F77B724D2D91D008AF127 /* SceneDelegate.swift */; };
-		370F77BA24D2D91D008AF127 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F77B924D2D91D008AF127 /* ViewController.swift */; };
+		370F77BA24D2D91D008AF127 /* StoreFrontVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F77B924D2D91D008AF127 /* StoreFrontVC.swift */; };
 		370F77BD24D2D91D008AF127 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 370F77BB24D2D91D008AF127 /* Main.storyboard */; };
 		370F77BF24D2D91F008AF127 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 370F77BE24D2D91F008AF127 /* Assets.xcassets */; };
 		370F77C224D2D91F008AF127 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 370F77C024D2D91F008AF127 /* LaunchScreen.storyboard */; };
+		3766609F24D308D9003BBB8D /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3766609E24D308D9003BBB8D /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		370F77B224D2D91D008AF127 /* Foodzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		370F77B524D2D91D008AF127 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		370F77B724D2D91D008AF127 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		370F77B924D2D91D008AF127 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		370F77B924D2D91D008AF127 /* StoreFrontVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreFrontVC.swift; sourceTree = "<group>"; };
 		370F77BC24D2D91D008AF127 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		370F77BE24D2D91F008AF127 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		370F77C124D2D91F008AF127 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		370F77C324D2D91F008AF127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3766609E24D308D9003BBB8D /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,24 @@
 		370F77B424D2D91D008AF127 /* Foodzilla */ = {
 			isa = PBXGroup;
 			children = (
+				370F77C924D2EB58008AF127 /* Controller */,
 				370F77B524D2D91D008AF127 /* AppDelegate.swift */,
 				370F77B724D2D91D008AF127 /* SceneDelegate.swift */,
-				370F77B924D2D91D008AF127 /* ViewController.swift */,
 				370F77BB24D2D91D008AF127 /* Main.storyboard */,
 				370F77BE24D2D91F008AF127 /* Assets.xcassets */,
 				370F77C024D2D91F008AF127 /* LaunchScreen.storyboard */,
 				370F77C324D2D91F008AF127 /* Info.plist */,
 			);
 			path = Foodzilla;
+			sourceTree = "<group>";
+		};
+		370F77C924D2EB58008AF127 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				370F77B924D2D91D008AF127 /* StoreFrontVC.swift */,
+				3766609E24D308D9003BBB8D /* DetailVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				370F77BA24D2D91D008AF127 /* ViewController.swift in Sources */,
+				370F77BA24D2D91D008AF127 /* StoreFrontVC.swift in Sources */,
+				3766609F24D308D9003BBB8D /* DetailVC.swift in Sources */,
 				370F77B624D2D91D008AF127 /* AppDelegate.swift in Sources */,
 				370F77B824D2D91D008AF127 /* SceneDelegate.swift in Sources */,
 			);
@@ -287,6 +299,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8PF4PD98CF;
 				INFOPLIST_FILE = Foodzilla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +318,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8PF4PD98CF;
 				INFOPLIST_FILE = Foodzilla/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
