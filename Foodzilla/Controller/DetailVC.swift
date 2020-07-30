@@ -16,8 +16,22 @@ class DetailVC: UIViewController {
     @IBOutlet weak var uglyAdView: UIView!
     @IBOutlet weak var buyItemButton: UIButton!
     @IBOutlet weak var hideAdsButton: UIButton!
+    
+    public private(set) var item: Item!
+    
+    func initData(forItem item: Item) {
+        self.item = item
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        itemImageView.image = item.image
+        itemNameLabel.text = item.name
+        itemPriceLabel.text = String(describing: item.price)
+        buyItemButton.setTitle("Buy the item for $(\(item.price)", for: .normal)
 
         // Do any additional setup after loading the view.
     }

@@ -31,11 +31,29 @@ extension StoreFrontVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return foodItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell" , for: indexPath) as? ItemCell else { return UICollectionViewCell()}
+        cell.configureCell(forItem: foodItems[indexPath.row])
+        
+        
+        
+        return cell
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let detailVC = storyboard?.instantiateViewController(identifier: "DetailVC") as? DetailVC else { return }
+        let item = foodItems[indexPath.row]
+        detailVC.initData(forItem: item)
+        present(detailVC,animated: true, completion: nil)
+        
+        
+        
     }
     
     
