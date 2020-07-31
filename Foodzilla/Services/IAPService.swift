@@ -26,6 +26,12 @@ class IAPService: NSObject, SKProductsRequestDelegate {
     var productIds = Set<String>()
     var productRequest = SKProductsRequest()
     
+    override init() {
+        super.init()
+        SKPaymentQueue.default().add(self)
+    }
+    
+    
     func loadProducts() {
         productIdToStringSet()
         requestProducts(forIds: productIds)
