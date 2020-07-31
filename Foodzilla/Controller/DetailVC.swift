@@ -33,10 +33,39 @@ class DetailVC: UIViewController {
         itemPriceLabel.text = String(describing: item.price)
         buyItemButton.setTitle("Buy the item for $(\(item.price)", for: .normal)
 
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePurchase(_:)), name: NSNotification.Name(IAPServicePurchaseNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleFailure), name: NSNotification.Name(IAPServiceFailureNotification), object: nil)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func handlePurchase(_ notification: Notification) {
+        guard let productID = notification.object as? String else { return }
+        
+        switch productID {
+        case IAP_MEAL_ID:
+            buyItemButton.isEnabled = true
+            debugPrint("Meal saccessfully purchased.")
+            break
+        case IAP_HID_ADS_ID:
+            break
+        
+        default:
+            break
+        }
+        
     }
     
 
+    @objc func handleFailure() {
+         buyItemButton.isEnabled = true
+        debugPrint("Purchase failed!")
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -47,6 +76,7 @@ class DetailVC: UIViewController {
     }
     */
     @IBAction func buyItemsWasPressed(_ sender: Any) {
+        buyItemButton.isEnabled = false
         IAPService.instance.attemptPurchaseForItemWith(productIndex: .meal)
     }
     
