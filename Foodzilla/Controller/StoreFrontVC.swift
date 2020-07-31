@@ -20,9 +20,23 @@ class StoreFrontVC: UIViewController {
         IAPService.instance.delegate = self
         IAPService.instance.loadProducts()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(showRestoredAlert), name: NSNotification.Name(rawValue: IAPServiceRestoreNotification), object: nil)
     }
+    
+    
 
     @IBAction func restoreBtnWasPressed(_ sender: Any) {
+        let alertVC = UIAlertController(title: "Restore Purchases?", message: "Do you want to restore any in-app purchases you've previusly purchased?", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Restore", style: .default) { (action) in
+            IAPService.instance.restorePurchases()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertVC.addAction(action)
+        alertVC.addAction(cancelAction)
+        
+        present(alertVC, animated: true, completion: nil)
+        
     }
     
 }
@@ -57,6 +71,15 @@ extension StoreFrontVC: UICollectionViewDelegate, UICollectionViewDataSource {
         present(detailVC,animated: true, completion: nil)
         
         
+        
+    }
+    
+    @objc func showRestoredAlert(){
+        let alert = UIAlertController(title: "Success", message: "Your purchases were successfuly restored", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
         
     }
     
