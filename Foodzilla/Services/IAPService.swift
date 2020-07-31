@@ -56,7 +56,38 @@ class IAPService: NSObject, SKProductsRequestDelegate {
             print(products[0].localizedTitle)
         }
     }
+    
+    func attemptPurchaseForItemWith(productIndex: Product) {
+        let product = products[productIndex.rawValue]
+        let payment = SKPayment(product: product)
+        
+        SKPaymentQueue.default().add(payment)
+    }
 }
 
+
+
+extension IAPService: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased:
+                SKPaymentQueue.default().finishTransaction(transaction)
+                debugPrint("Purchase was successful!")
+                break
+            case .restored:
+                break
+            case .failed:
+                break
+            case .deferred:
+                break
+            case .purchasing:
+                break
+            default:
+                break
+            }
+        }
+    }
+}
 
 
