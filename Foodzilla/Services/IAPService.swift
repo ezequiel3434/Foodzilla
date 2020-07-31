@@ -48,9 +48,12 @@ class IAPService: NSObject, SKProductsRequestDelegate {
         self.products = response.products
         
         if products.count == 0 {
+            print("no recibi nada")
             requestProducts(forIds: productIds)
+            
         } else {
             delegate?.iapProductsLoaded()
+            print(products[0].localizedTitle)
         }
     }
 }

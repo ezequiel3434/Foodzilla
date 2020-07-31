@@ -19,6 +19,8 @@
 		376660A824D32E0D003BBB8D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660A724D32E0D003BBB8D /* ItemCell.swift */; };
 		376660AB24D37610003BBB8D /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660AA24D37610003BBB8D /* IAPService.swift */; };
 		376660AD24D37B02003BBB8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660AC24D37B02003BBB8D /* Constants.swift */; };
+		376660B024D45FA2003BBB8D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660AF24D45FA2003BBB8D /* Product.swift */; };
+		376660B224D45FC8003BBB8D /* PurchaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660B124D45FC8003BBB8D /* PurchaseStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		376660A724D32E0D003BBB8D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		376660AA24D37610003BBB8D /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
 		376660AC24D37B02003BBB8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		376660AF24D45FA2003BBB8D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		376660B124D45FC8003BBB8D /* PurchaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 		370F77B424D2D91D008AF127 /* Foodzilla */ = {
 			isa = PBXGroup;
 			children = (
+				376660AE24D45F93003BBB8D /* Enums */,
 				376660A924D375F0003BBB8D /* Services */,
 				376660A224D31A03003BBB8D /* Helpers */,
 				376660A124D319F2003BBB8D /* Model */,
@@ -123,6 +128,15 @@
 				376660AA24D37610003BBB8D /* IAPService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		376660AE24D45F93003BBB8D /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				376660AF24D45FA2003BBB8D /* Product.swift */,
+				376660B124D45FC8003BBB8D /* PurchaseStatus.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,10 +213,12 @@
 				376660A424D31A2C003BBB8D /* Item.swift in Sources */,
 				370F77BA24D2D91D008AF127 /* StoreFrontVC.swift in Sources */,
 				376660A624D31B21003BBB8D /* FoodItems.swift in Sources */,
+				376660B224D45FC8003BBB8D /* PurchaseStatus.swift in Sources */,
 				3766609F24D308D9003BBB8D /* DetailVC.swift in Sources */,
 				376660A824D32E0D003BBB8D /* ItemCell.swift in Sources */,
 				370F77B624D2D91D008AF127 /* AppDelegate.swift in Sources */,
 				376660AB24D37610003BBB8D /* IAPService.swift in Sources */,
+				376660B024D45FA2003BBB8D /* Product.swift in Sources */,
 				370F77B824D2D91D008AF127 /* SceneDelegate.swift in Sources */,
 				376660AD24D37B02003BBB8D /* Constants.swift in Sources */,
 			);
