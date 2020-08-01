@@ -23,6 +23,7 @@
 		376660B224D45FC8003BBB8D /* PurchaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660B124D45FC8003BBB8D /* PurchaseStatus.swift */; };
 		376660B424D4D22F003BBB8D /* images in Resources */ = {isa = PBXBuildFile; fileRef = 376660B324D4D22F003BBB8D /* images */; };
 		376660B724D587A9003BBB8D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376660B624D587A9003BBB8D /* StoreKit.framework */; };
+		376660BA24D5EBBA003BBB8D /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660B924D5EBBA003BBB8D /* DateExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		376660B124D45FC8003BBB8D /* PurchaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStatus.swift; sourceTree = "<group>"; };
 		376660B324D4D22F003BBB8D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		376660B624D587A9003BBB8D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		376660B924D5EBBA003BBB8D /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		370F77B424D2D91D008AF127 /* Foodzilla */ = {
 			isa = PBXGroup;
 			children = (
+				376660B824D5EBA2003BBB8D /* Extensions */,
 				376660AE24D45F93003BBB8D /* Enums */,
 				376660A924D375F0003BBB8D /* Services */,
 				376660A224D31A03003BBB8D /* Helpers */,
@@ -152,6 +155,14 @@
 				376660B624D587A9003BBB8D /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		376660B824D5EBA2003BBB8D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				376660B924D5EBBA003BBB8D /* DateExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 				376660B024D45FA2003BBB8D /* Product.swift in Sources */,
 				370F77B824D2D91D008AF127 /* SceneDelegate.swift in Sources */,
 				376660AD24D37B02003BBB8D /* Constants.swift in Sources */,
+				376660BA24D5EBBA003BBB8D /* DateExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
