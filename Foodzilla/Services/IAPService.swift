@@ -84,7 +84,7 @@ class IAPService: NSObject, SKProductsRequestDelegate {
 }
 
 
-
+//MARK: PAyment requests
 extension IAPService: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
@@ -92,7 +92,6 @@ extension IAPService: SKPaymentTransactionObserver {
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 complete(transaction: transaction)
-                sendNotificationFor(status: .purchased, withIdentifier: transaction.payment.productIdentifier)
                 
                 debugPrint("Purchase was successful!")
                 break
@@ -101,7 +100,7 @@ extension IAPService: SKPaymentTransactionObserver {
                 break
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)
-                sendNotificationFor(status: .failed, withIdentifier: nil)
+                sendNotificationFor(status: .failed, withIdentifier: nil, orBoolean: nil)
                 break
             case .deferred:
                 break
@@ -114,13 +113,18 @@ extension IAPService: SKPaymentTransactionObserver {
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        sendNotificationFor(status: .restored, withIdentifier: nil)
+        sendNotificationFor(status: .restored, withIdentifier: nil, orBoolean: nil)
         setNonConsumablePurchase(true)
     }
     
     func complete(transaction: SKPaymentTransaction) {
         switch transaction.payment.productIdentifier {
+        case IAP_MEALTIME_MONTHLY_SUB:
+            sendNotificationFor(status: .subscribed, withIdentifier: transaction.payment.productIdentifier, orBoolean: true)
+            setNonConsumablePurchase(true)
+            break
         case IAP_MEAL_ID:
+            sendNotificationFor(status: .purchased, withIdentifier: transaction.payment.productIdentifier, orBoolean: nil)
             break
         case IAP_HID_ADS_ID:
             setNonConsumablePurchase(true)
@@ -134,8 +138,10 @@ extension IAPService: SKPaymentTransactionObserver {
         UserDefaults.standard.set(status, forKey: "nonConsumablePurchaseWasMade")
     }
     
+
+    //MARK: Notifications
     
-    func sendNotificationFor(status: PurchaseStatus, withIdentifier identifier: String?) {
+    func sendNotificationFor(status: PurchaseStatus, withIdentifier identifier: String?, orBoolean bool: Bool?) {
         switch status {
         case .purchased:
             NotificationCenter.default.post(name: NSNotification.Name.init(IAPServicePurchaseNotification) , object: identifier)
@@ -147,6 +153,9 @@ extension IAPService: SKPaymentTransactionObserver {
              NotificationCenter.default.post(name: NSNotification.Name.init(IAPServiceFailureNotification) , object: nil)
             break
        
+        case .subscribed:
+            NotificationCenter.default.post(name: NSNotification.Name.init(IAPSubInfoChangedNotification), object: bool)
+            break
         }
     }
     

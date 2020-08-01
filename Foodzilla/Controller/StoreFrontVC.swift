@@ -11,6 +11,7 @@ import UIKit
 class StoreFrontVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var subscriptionStatusLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,7 +22,23 @@ class StoreFrontVC: UIViewController {
         IAPService.instance.loadProducts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showRestoredAlert), name: NSNotification.Name(rawValue: IAPServiceRestoreNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(subscriptionStatusWasChanged(_:)), name: NSNotification.Name(IAPSubInfoChangedNotification), object: nil)
     }
+    
+    
+    @objc func subscriptionStatusWasChanged(_ notification: Notification) {
+        guard let status = notification.object as? Bool else { return }
+        
+        if status == true {
+            debugPrint("Subscription valid")
+            // Perform actions for active subcriptions
+        } else {
+            debugPrint("Subscription expired")
+            // Perform actions for expired subcriptions
+        }
+        
+    }
+    
     
     @IBAction func subscribeBtnWasPressed(_ sender: Any) {
         IAPService.instance.attemptPurchaseForItemWith(productIndex: .monthlySub)
