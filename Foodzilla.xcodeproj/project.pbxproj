@@ -22,6 +22,7 @@
 		376660B024D45FA2003BBB8D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660AF24D45FA2003BBB8D /* Product.swift */; };
 		376660B224D45FC8003BBB8D /* PurchaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376660B124D45FC8003BBB8D /* PurchaseStatus.swift */; };
 		376660B424D4D22F003BBB8D /* images in Resources */ = {isa = PBXBuildFile; fileRef = 376660B324D4D22F003BBB8D /* images */; };
+		376660B724D587A9003BBB8D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376660B624D587A9003BBB8D /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		376660AF24D45FA2003BBB8D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		376660B124D45FC8003BBB8D /* PurchaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStatus.swift; sourceTree = "<group>"; };
 		376660B324D4D22F003BBB8D /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		376660B624D587A9003BBB8D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376660B724D587A9003BBB8D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 				370F77B424D2D91D008AF127 /* Foodzilla */,
 				370F77B324D2D91D008AF127 /* Products */,
 				376660B324D4D22F003BBB8D /* images */,
+				376660B524D587A9003BBB8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +144,14 @@
 				376660B124D45FC8003BBB8D /* PurchaseStatus.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		376660B524D587A9003BBB8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				376660B624D587A9003BBB8D /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

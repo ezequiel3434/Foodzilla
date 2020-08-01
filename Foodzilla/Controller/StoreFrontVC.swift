@@ -23,6 +23,9 @@ class StoreFrontVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showRestoredAlert), name: NSNotification.Name(rawValue: IAPServiceRestoreNotification), object: nil)
     }
     
+    @IBAction func subscribeBtnWasPressed(_ sender: Any) {
+        IAPService.instance.attemptPurchaseForItemWith(productIndex: .monthlySub)
+    }
     
 
     @IBAction func restoreBtnWasPressed(_ sender: Any) {

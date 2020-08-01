@@ -41,7 +41,7 @@ class IAPService: NSObject, SKProductsRequestDelegate {
     }
     
     func productIdToStringSet() {
-        let ids = [IAP_HID_ADS_ID, IAP_MEAL_ID ]
+        let ids = [IAP_HID_ADS_ID, IAP_MEAL_ID, IAP_MEALTIME_MONTHLY_SUB ]
         for id in ids {
             productIds.insert(id)
         }
@@ -78,6 +78,8 @@ class IAPService: NSObject, SKProductsRequestDelegate {
     
     func restorePurchases() {
         SKPaymentQueue.default().restoreCompletedTransactions()
+        
+     
     }
 }
 

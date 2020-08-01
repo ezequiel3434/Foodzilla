@@ -11,8 +11,8 @@ import Foundation
 
 //MARK: Identifiers
 let IAP_MEAL_ID = "com.paradabeltran.Foodzilla.mealiap"
-
 let IAP_HID_ADS_ID = "com.paradabeltran.Foodzilla.hideads"
+let IAP_MEALTIME_MONTHLY_SUB = "com.paradabeltran.mealsmonthly"
 
 //MARK: Notifications identifiers
 

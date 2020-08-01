@@ -100,12 +100,30 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnM-Q0-RGT">
+                                <rect key="frame" x="255" y="16" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="I8W-SU-0XF"/>
+                                    <constraint firstAttribute="height" constant="50" id="IdX-gs-LiI"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="w9r-ji-bec"/>
+                                    <constraint firstAttribute="width" constant="50" id="wrQ-EB-Ay7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="30"/>
+                                <state key="normal" title="$">
+                                    <color key="titleColor" red="0.42745098039215684" green="0.73725490196078436" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="subscribeBtnWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jsS-sC-QhB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0CP-sT-9OR" firstAttribute="leading" secondItem="TYh-2O-JeD" secondAttribute="trailing" constant="4" id="0hl-57-VbW"/>
+                            <constraint firstItem="0CP-sT-9OR" firstAttribute="leading" secondItem="JnM-Q0-RGT" secondAttribute="trailing" constant="4" id="AcI-bg-W4x"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U06-by-IF0" secondAttribute="trailing" constant="20" id="Coz-Wk-wFY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="U06-by-IF0" secondAttribute="bottom" constant="20" id="DqS-k8-3oM"/>
+                            <constraint firstItem="JnM-Q0-RGT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="GQa-GD-EhD"/>
                             <constraint firstItem="U06-by-IF0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="GiC-ha-ebf"/>
                             <constraint firstItem="TYh-2O-JeD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="INw-gy-S4j"/>
                             <constraint firstItem="0CP-sT-9OR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="bOd-fD-WbP"/>
