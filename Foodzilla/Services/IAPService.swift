@@ -110,6 +110,7 @@ class IAPService: SKReceiptRefreshRequest, SKProductsRequestDelegate {
     func isSubscriptionActive(completionHandler: @escaping (Bool) -> Void ) {
         reloadExpiryDate()
         let nowDate = Date()
+        debugPrint("TIME REMAINING: ", (expirationDate?.timeIntervalSinceNow)! / 60, " MINUTES" )
         guard let expirationDate = expirationDate else { return }
         
         if nowDate.isLessThan(expirationDate) {
@@ -187,23 +188,26 @@ extension IAPService: SKPaymentTransactionObserver {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
-                SKPaymentQueue.default().finishTransaction(transaction)
-                complete(transaction: transaction)
                 
+                complete(transaction: transaction)
+                SKPaymentQueue.default().finishTransaction(transaction)
                 debugPrint("Purchase was successful!")
                 
             case .restored:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 break
             case .failed:
-                SKPaymentQueue.default().finishTransaction(transaction)
+                
                 sendNotificationFor(status: .failed, withIdentifier: nil, orBoolean: nil)
+                SKPaymentQueue.default().finishTransaction(transaction)
                 break
             case .deferred:
+                SKPaymentQueue.default().finishTransaction(transaction)
                 break
             case .purchasing:
                 break
             default:
+                debugPrint("Purchasing...")
                 break
             }
         }
@@ -216,7 +220,10 @@ extension IAPService: SKPaymentTransactionObserver {
     
     func complete(transaction: SKPaymentTransaction) {
         switch transaction.payment.productIdentifier {
-       
+        case IAP_MEALTIME_MONTHLY_SUB:
+            self.sendNotificationFor(status: .subscribed, withIdentifier: nil, orBoolean: true)
+            self.setNonConsumablePurchase(true)
+            break
         case IAP_MEAL_ID:
             sendNotificationFor(status: .purchased, withIdentifier: transaction.payment.productIdentifier, orBoolean: nil)
             break

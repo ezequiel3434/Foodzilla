@@ -12,6 +12,7 @@ class StoreFrontVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var subscriptionStatusLbl: UILabel!
+    @IBOutlet weak var foodzillaLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,23 +26,37 @@ class StoreFrontVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(subscriptionStatusWasChanged(_:)), name: NSNotification.Name(IAPSubInfoChangedNotification), object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IAPService.instance.isSubscriptionActive { (active) in
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     @objc func subscriptionStatusWasChanged(_ notification: Notification) {
         guard let status = notification.object as? Bool else { return }
         DispatchQueue.main.async {
-             if status == true {
+        if status == true {
                       
-                       // Perform actions for active subcriptions
+        // Perform actions for active subcriptions
+            self.view.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+            self.collectionView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+            self.subscriptionStatusLbl.text = "SUBSCRIPTION ACTIVE"
+            self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.4274509804, green: 0.737254902, blue: 0.3882352941, alpha: 1)
+            self.foodzillaLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+              } else {
                        
-                       self.subscriptionStatusLbl.text = "SUBSCRIPTION ACTIVE"
-                       self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.4274509804, green: 0.737254902, blue: 0.3882352941, alpha: 1)
-                       
-                   } else {
-                       
-                       // Perform actions for expired subcriptions
-                       self.subscriptionStatusLbl.text = "SUBSCRIPTION EXPIRED"
-                       self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.8235294118, green: 0.3137254902, blue: 0.3058823529, alpha: 1)
-                   }
+            // Perform actions for expired subcriptions
+            self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.subscriptionStatusLbl.text = "SUBSCRIPTION EXPIRED"
+            self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.8235294118, green: 0.3137254902, blue: 0.3058823529, alpha: 1)
+            self.foodzillaLbl.textColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+            }
         }
        
         

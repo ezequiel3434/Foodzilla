@@ -147,6 +147,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="U06-by-IF0" id="Csq-in-E1G"/>
+                        <outlet property="foodzillaLbl" destination="TYh-2O-JeD" id="yE1-uv-X5j"/>
                         <outlet property="subscriptionStatusLbl" destination="Ev6-0V-aXH" id="71G-Fd-lNK"/>
                     </connections>
                 </viewController>

@@ -45,8 +45,9 @@ class DetailVC: UIViewController {
         showOrHideAds()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    
+    
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
