@@ -28,20 +28,22 @@ class StoreFrontVC: UIViewController {
     
     @objc func subscriptionStatusWasChanged(_ notification: Notification) {
         guard let status = notification.object as? Bool else { return }
-        
-        if status == true {
-           
-            // Perform actions for active subcriptions
-            
-            self.subscriptionStatusLbl.text = "SUBSCRIPTION ACTIVE"
-            self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.4274509804, green: 0.737254902, blue: 0.3882352941, alpha: 1)
-            
-        } else {
-            
-            // Perform actions for expired subcriptions
-            self.subscriptionStatusLbl.text = "SUBSCRIPTION EXPIRED"
-            self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.8235294118, green: 0.3137254902, blue: 0.3058823529, alpha: 1)
+        DispatchQueue.main.async {
+             if status == true {
+                      
+                       // Perform actions for active subcriptions
+                       
+                       self.subscriptionStatusLbl.text = "SUBSCRIPTION ACTIVE"
+                       self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.4274509804, green: 0.737254902, blue: 0.3882352941, alpha: 1)
+                       
+                   } else {
+                       
+                       // Perform actions for expired subcriptions
+                       self.subscriptionStatusLbl.text = "SUBSCRIPTION EXPIRED"
+                       self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.8235294118, green: 0.3137254902, blue: 0.3058823529, alpha: 1)
+                   }
         }
+       
         
     }
     

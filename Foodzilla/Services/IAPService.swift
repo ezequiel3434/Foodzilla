@@ -29,10 +29,7 @@ class IAPService: SKReceiptRefreshRequest, SKProductsRequestDelegate {
     var expirationDate = UserDefaults.standard.value(forKey: "expirationDate") as? Date
     var nonConsumablePurchaseWasMade = UserDefaults.standard.bool(forKey: "nonConsumablePurchaseWasMade")
     
-    override init() {
-        super.init()
-        SKPaymentQueue.default().add(self)
-    }
+    
     
     
     func loadProducts() {
@@ -111,6 +108,7 @@ class IAPService: SKReceiptRefreshRequest, SKProductsRequestDelegate {
     
     
     func isSubscriptionActive(completionHandler: @escaping (Bool) -> Void ) {
+        reloadExpiryDate()
         let nowDate = Date()
         guard let expirationDate = expirationDate else { return }
         
@@ -176,6 +174,10 @@ class IAPService: SKReceiptRefreshRequest, SKProductsRequestDelegate {
         UserDefaults.standard.set(date, forKey: "expirationDate")
     }
     
+    func reloadExpiryDate() {
+        expirationDate = UserDefaults.standard.value(forKey: "expirationDate") as? Date
+    }
+    
 }
 
 
@@ -189,7 +191,7 @@ extension IAPService: SKPaymentTransactionObserver {
                 complete(transaction: transaction)
                 
                 debugPrint("Purchase was successful!")
-                break
+                
             case .restored:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 break
