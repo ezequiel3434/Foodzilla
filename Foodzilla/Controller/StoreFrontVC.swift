@@ -18,7 +18,7 @@ class StoreFrontVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        IAPService.instance.delegate = self
+        IAPService.instance.iapDelegate = self
         IAPService.instance.loadProducts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showRestoredAlert), name: NSNotification.Name(rawValue: IAPServiceRestoreNotification), object: nil)
@@ -30,11 +30,17 @@ class StoreFrontVC: UIViewController {
         guard let status = notification.object as? Bool else { return }
         
         if status == true {
-            debugPrint("Subscription valid")
+           
             // Perform actions for active subcriptions
+            
+            self.subscriptionStatusLbl.text = "SUBSCRIPTION ACTIVE"
+            self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.4274509804, green: 0.737254902, blue: 0.3882352941, alpha: 1)
+            
         } else {
-            debugPrint("Subscription expired")
+            
             // Perform actions for expired subcriptions
+            self.subscriptionStatusLbl.text = "SUBSCRIPTION EXPIRED"
+            self.subscriptionStatusLbl.textColor = #colorLiteral(red: 0.8235294118, green: 0.3137254902, blue: 0.3058823529, alpha: 1)
         }
         
     }

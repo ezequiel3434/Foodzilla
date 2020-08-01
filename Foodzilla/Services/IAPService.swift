@@ -16,11 +16,11 @@ protocol IAPServiceDelegate {
 
 
 
-class IAPService: NSObject, SKProductsRequestDelegate {
+class IAPService: SKReceiptRefreshRequest, SKProductsRequestDelegate {
         
     static let instance = IAPService()
     
-    var delegate: IAPServiceDelegate?
+    var iapDelegate: IAPServiceDelegate?
     
     var products = [SKProduct]()
     var productIds = Set<String>()
@@ -65,7 +65,7 @@ class IAPService: NSObject, SKProductsRequestDelegate {
             requestProducts(forIds: productIds)
             
         } else {
-            delegate?.iapProductsLoaded()
+            iapDelegate?.iapProductsLoaded()
             print(products[0].localizedTitle)
         }
     }
@@ -82,6 +82,33 @@ class IAPService: NSObject, SKProductsRequestDelegate {
         
      
     }
+    
+    func requestDidFinish(_ request: SKRequest) {
+        uploadReceipt { (valid) in
+            if valid {
+                
+                debugPrint("SUBSCRIPTION VALID")
+                // check to see if subscription active
+                self.isSubscriptionActive { (active) in
+                    if active {
+                        debugPrint("SUBSCRIPTION ACTIVE")
+                        self.sendNotificationFor(status: .subscribed, withIdentifier: nil, orBoolean: true)
+                        self.setNonConsumablePurchase(true)
+                    } else {
+                        debugPrint("SUBSCRIPTION EXPIRED")
+                        self.sendNotificationFor(status: .subscribed, withIdentifier: nil, orBoolean: false)
+                        self.setNonConsumablePurchase(false)
+                    }
+                }
+            } else {
+                debugPrint("SUBSCRIPTION INVALID")
+                // LOck out subscription benefits
+                self.sendNotificationFor(status: .subscribed, withIdentifier: nil, orBoolean: false)
+                self.setNonConsumablePurchase(false)
+            }
+        }
+    }
+    
     
     func isSubscriptionActive(completionHandler: @escaping (Bool) -> Void ) {
         let nowDate = Date()
@@ -187,17 +214,7 @@ extension IAPService: SKPaymentTransactionObserver {
     
     func complete(transaction: SKPaymentTransaction) {
         switch transaction.payment.productIdentifier {
-        case IAP_MEALTIME_MONTHLY_SUB:
-//            uploadReceipt { (valid) in
-//                if valid {
-//                    debugPrint("Subscription is totally valid")
-//                } else {
-//                    debugPrint("Doesn't look like you bought this.")
-//                }
-//            }
-            sendNotificationFor(status: .subscribed, withIdentifier: transaction.payment.productIdentifier, orBoolean: true)
-            setNonConsumablePurchase(true)
-            break
+       
         case IAP_MEAL_ID:
             sendNotificationFor(status: .purchased, withIdentifier: transaction.payment.productIdentifier, orBoolean: nil)
             break
